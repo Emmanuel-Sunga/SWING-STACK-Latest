@@ -110,10 +110,11 @@ public class GamePanel extends JPanel implements Runnable {
             KeyHandler.pausePressed = false;
         }
 
-        if (PlayManager.gameState == GameState.PLAYING && !pm.gameOver) {
+        // ✅ FIXED: Allow update during GAME_OVER
+        if (PlayManager.gameState == GameState.PLAYING || pm.gameOver) {
             pm.update();
         } else if (PlayManager.gameState == GameState.MENU) {
-            menu.update(); // Animate title and hover effects
+            menu.update();
         }
     }
 
